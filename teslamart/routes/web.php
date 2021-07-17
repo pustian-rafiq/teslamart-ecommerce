@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteHomeController;
+use App\Http\Controllers\Admin\Brand\BrandController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +15,12 @@ use App\Http\Controllers\SiteHomeController;
 */
 
 Route::get('/',[SiteHomeController::class,'homeIndex']);
+
+// Auth routes
+Auth::routes();
+Route::get('/admin/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+// Admin brand routes
+
+Route::get('/admin/brand/brand-list',[BrandController::class,'showBrand'])->name('brand.brand-list');
+Route::get('/admin/brand/add-brand',[BrandController::class,'addBrand'])->name('brand.add-brand');

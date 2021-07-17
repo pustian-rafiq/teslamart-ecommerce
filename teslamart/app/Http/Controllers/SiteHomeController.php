@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class SiteHomeController extends Controller
 {
     public function homeIndex(){
-    	return view('home');
+    	return view('website.home');
     }
 }
