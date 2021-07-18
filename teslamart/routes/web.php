@@ -26,3 +26,4 @@ Route::get('/admin/brand/brand-list',[BrandController::class,'showBrand'])->name
 Route::post('/admin/brand/add-brand',[BrandController::class,'addBrand'])->name('brand.add-brand');
 Route::get('/admin/brand/activeBrandStatus/{id}',[BrandController::class,'activateBrandStatus'])->name('brand.active-status');
 Route::get('/admin/brand/deactiveBrandStatus/{id}',[BrandController::class,'deactivateBrandStatus'])->name('brand.deactive-status');
+Route::get('/admin/brand/delete/{id}',[BrandController::class,'deleteBrand'])->name('brand.delete');

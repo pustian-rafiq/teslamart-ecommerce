@@ -72,7 +72,8 @@
 		                      <a href="{{ route('brand.active-status',$brand->id) }}" class="badge badge-info" style="font-size: 20px; margin-right: 3px; " title="Activate Status"><i class="fa fa-arrow-up"></i></a>
 		                    @endif
 	                    	<a href="#" class="badge badge-success" style="font-size: 20px; margin-right: 3px;" title="Edit Brand"><i class="fa fa-pencil"></i></a>
-	                    	<a href="#" class="  badge badge-danger" style="font-size: 20px;" title="Delete Brand"><i class="fa fa-trash"></i> </a>
+	                    	<a href="{{ route('brand.delete',$brand->id) }}" class="badge badge-danger" style="font-size: 20px;"   title="Delete Brand" id="delete"><i class="fa fa-trash"></i> </a>
+ 
 	                    </td>
 	                  </tr>
                   @endforeach
@@ -154,5 +155,11 @@
   </div>
 </div>
 
+
+
 </div>
 @endsection
+
+@push('js')
+ 
+@endpush
