@@ -12,6 +12,7 @@
      <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin/css/bootstrap-toggle.min.css') }}">
 
 	<link rel="stylesheet" href="{{ asset('admin/css/adminlte.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
@@ -20,7 +21,7 @@
    
 
 
- <link rel="stylesheet" href="sweetalert2.min.css">
+  
  
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
@@ -43,6 +44,7 @@
 <script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('admin/js/bootstrap-toggle.min.js') }}"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script> 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
@@ -101,8 +103,18 @@
             });
     </script>  
 
+{{-- <script type="text/javascript">
+ //Services Table Edit Icon Click
+                  $('#brandEditBtn').click(function() {
+                    alert('its work')
+                  //var id = $(this).data('id');
+                  //$('#courseEditId').html(id);
+                  //CourseUpdateDetails(id);
+                 // $('#updateCourseModal').modal('show');
 
- 
- @stack('scripts')
+                 })
+</script> --}}
+{{--   @stack('scripts')   --}}
+  @yield('script') 
   </body>
 </html>

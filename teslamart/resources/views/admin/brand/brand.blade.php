@@ -46,6 +46,7 @@
                   <thead>
 	                  <tr>
 	                    <th>Sl No</th>
+	                    <th>Brand Logo</th>
 	                    <th>Brand Name</th>
 	                    <th>Brand Slug</th>
 	                    <th>Status</th>
@@ -57,21 +58,23 @@
                   	@foreach($brands as $key => $brand)
 	                  <tr>
 	                    <td>{{ ++$key }}</td>
+	                    <td ><img height="70" width="70" src="{{ URL::to($brand->brand_logo) }}" ></td>
 	                    <td>{{ $brand->brand_name }}</td>
 	                    <td>{{ $brand->brand_slug }}</td>
-	                    @if($brand->brand_status == 1)
+	                    <td><input type="checkbox" id="brandStatusID" data-id="{{ $brand->id }}" {{ $brand->brand_status == 1? 'checked' : '' }} data-on="Active" data-off="Deactives" data-toggle="toggle"></td>
+	                    {{-- @if($brand->brand_status == 1)
 	                     <td><span class="badge badge-success">Active</span></td>
 	                    @else
 	                     <td><span class="badge badge-danger">InActive</span></td>
-	                    @endif
+	                    @endif --}}
 	                   
 	                    <td>
-		                    @if($brand->brand_status == 1)
+		                    {{-- @if($brand->brand_status == 1)
 		                     <a href="{{ route('brand.deactive-status',$brand->id) }}" class=" badge badge-success" style="font-size: 20px; margin-right: 3px; " title="Deactivate Status"><i class="fa fa-arrow-down"></i></a>
 		                    @else
 		                      <a href="{{ route('brand.active-status',$brand->id) }}" class="badge badge-info" style="font-size: 20px; margin-right: 3px; " title="Activate Status"><i class="fa fa-arrow-up"></i></a>
-		                    @endif
-	                    	<a href="#" class="badge badge-success" style="font-size: 20px; margin-right: 3px;" title="Edit Brand"><i class="fa fa-pencil"></i></a>
+		                    @endif --}}
+	                    	<a href="{{ route('brand.edit',$brand->id) }}" class="badge badge-success" style="font-size: 20px;"   title="Edit Brand" ><i class="fa fa-pencil"></i> </a>
 	                    	<a href="{{ route('brand.delete',$brand->id) }}" class="badge badge-danger" style="font-size: 20px;"   title="Delete Brand" id="delete"><i class="fa fa-trash"></i> </a>
  
 	                    </td>
@@ -82,6 +85,7 @@
                   <tfoot>
 	                  <tr>
 	                    <th>Sl No</th>
+	                    <th>Brand Logo</th>
 	                    <th>Brand Name</th>
 	                    <th>Brand Slug</th>
 	                    <th>Status</th>
@@ -110,7 +114,7 @@
         <!-- Button trigger modal -->
  
 
-<!-- Modal -->
+<!-- Brand Add Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -123,26 +127,74 @@
       </div>
 
       <div class="modal-body">
-         <form role="form" method="POST" action="{{ route('brand.add-brand') }}">
+      	{{-- Show error message --}}
+      	 
+         <form role="form" method="POST" action="{{ route('brand.add-brand') }}" enctype="multipart/form-data">
             	@csrf
                 <div class="card-body">
 
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Brand Name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Brand Name" name="brand_name">
+                    <label for="updatebrand_name">Brand Name</label>
+                    <input type="text" class="form-control" id="updatebrand_name" placeholder="Enter Brand Name" value="{{ old('brand_name') }}" name="brand_name">
+				 @error('brand_name')
+					    <div class="alert alert-danger">{{ $message }}</div>
+					@enderror
                   </div>
 
                    <div class="form-group">
-                    <label for="exampleInputEmail1">Brand Logo</label>
-                    <input type="file" class="form-control" id="exampleInputEmail1" placeholder="Enter Brand Logo" name="brand_logo">
+                    <label for="updatebrand_logo">Brand Logo</label>
+                    <input type="file" class="form-control" id="updatebrand_logo" placeholder="Enter Brand Logo" name="brand_logo">
                   </div>
- 
-              
+     
                 </div>
-               
+               <div class="modal-footer">
+      	  <button type="submit" class="btn btn-primary">Save Brand</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+              </form>  
+      </div>
 
-              
-                
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Brand Edit Modal -->
+<div class="modal fade" id="brandEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Brand</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+      	{{-- Show error message --}}
+      	 
+         <form role="form" method="POST" enctype="multipart/form-data">
+            	@csrf
+                <div class="card-body">
+
+                  <div class="form-group">
+                    <label for="brand_name">Brand Name</label>
+                    <input type="text" class="form-control" id="brand_name" placeholder="Enter Brand Name" value="{{ old('brand_name') }}" name="brand_name">
+				 @error('brand_name')
+					    <div class="alert alert-danger">{{ $message }}</div>
+					@enderror
+                  </div>
+
+                   <div class="form-group">
+                    <label for="brand_logo">Brand Logo</label>
+                    <input type="file" class="form-control" id="brand_logo" placeholder="Enter Brand Logo" name="brand_logo">
+                  </div>
+    
+                </div>
+       
                 <div class="modal-footer">
       	  <button type="submit" class="btn btn-primary">Save Brand</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -160,6 +212,38 @@
 </div>
 @endsection
 
-@push('js')
+{{-- @push('js')
  
-@endpush
+@endpush --}}
+
+@section('script')
+
+ <script type="text/javascript">
+ 	$(document).ready(function(){
+ 		$('body').on('change', '#brandStatusID', function(){
+ 		var id = $(this).attr("data-id");
+ 		if (this.checked) {
+ 			var status = 1;
+ 		}else{
+ 			var status = 0;
+ 		}
+
+ 		$.ajax({
+ 			url: 'brandStatus/'+id+'/'+status,
+ 			method: 'get',
+ 			success:function(data){
+ 				if (data.success) {
+ 					 toastr.success(data.success);
+ 					}else if(data.failed){
+ 						toastr.success("Something went wrong!");
+ 					}
+ 				
+ 			}
+
+ 		});
+ 	})
+ 	});
+ 	
+ </script>
+
+@endsection
