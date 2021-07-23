@@ -233,6 +233,7 @@
  			method: 'get',
  			success:function(data){
  				if (data.success) {
+          
  					 toastr.success(data.success);
  					}else if(data.failed){
  						toastr.success("Something went wrong!");

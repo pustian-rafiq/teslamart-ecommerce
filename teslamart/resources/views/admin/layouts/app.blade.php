@@ -33,12 +33,22 @@
         <!-- Page Content  -->
        @yield('main_content')
 		</div>
-
-    <script src="{{ asset('admin/js/jquery.min.js') }}"></script>
+  <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script> 
+{{--  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script> --}}
+    <script src="{{ asset('admin/js/jquery.min.js') }}"></script>  
     <script src="{{ asset('admin/js/popper.js') }}"></script>
     <script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/js/axios.min.js') }}"></script>
     <script src="{{ asset('admin/js/main.js') }}"></script>
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    {{-- Ei cdn use korle brand a toastr kaj korce --}}
+  {{--    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script> --}}
+{{--   <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>  --}}
  <!-- DataTables -->
 <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>

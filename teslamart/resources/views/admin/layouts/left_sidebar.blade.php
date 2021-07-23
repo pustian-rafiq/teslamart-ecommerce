@@ -28,9 +28,25 @@
 	          <li class="{{ request()->is('admin/brand/brand-list') ? 'active':'' }}">
 	              <a href="{{ route('brand.brand-list') }}"><span > <i  class="fa fa-bars"></i> </span> Brand</a>
 	          </li>
-	          <li class="{{ request()->is('dashboard') ? 'active':'' }}">
-	              <a href="#"><span > <i  class="fa fa-code"></i> </span> Category</a>
+
+	          <li  class="{{ request()->is('admin/category/*') ? 'active':'' }}">
+	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span > <i  class="fa fa-bars"></i> </span>Categories</a>
+	            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li class="{{ request()->is('admin/category/category-list') ? 'active':'' }}">
+                    <a href="{{ route('category.category-list') }}"><span > <i  class="fa fa-plus"></i> </span>Category</a>
+                </li>
+                <li class="{{ request()->is('admin/category/subcategory/subcategory-list') ? 'active':'' }}">
+                    <a href="{{ route('subcategory.subcategory-list') }}"><span > <i  class="fa fa-plus"></i> </span>Sub Category</a>
+                </li>
+                <li class="{{ request()->is('admin/category/subsubcategory/subsubcategory-list') ? 'active':'' }}">
+                    <a href="{{ route('subsubcategory.subsubcategory-list') }}"><span > <i  class="fa fa-plus"></i> </span>Sub Subcategory</a>
+                </li>
+	            </ul>
 	          </li>
+
+	         {{--  <li class="{{ request()->is('dashboard') ? 'active':'' }}">
+	              <a href="#"><span > <i  class="fa fa-code"></i> </span> Category</a>
+	          </li> --}}
 	          <li class="{{ request()->is('dashboard') ? 'active':'' }}">
 	              <a href="#"><span > <i  class="fa fa-envelope"></i> </span> Post</a>
 	          </li>
